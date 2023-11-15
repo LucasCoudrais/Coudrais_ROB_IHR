@@ -1,0 +1,10 @@
+topic: ~phase1()
+language: frf
+
+u:(e:onStart) $Example/Page0=1  Tu ferais quoi comme choix toi? 1, 2, ou 3? $Example/Page1=1
+
+u:([1 e:Example/Button1]) $Example/Page0=1 1? Ok $onStopped=1
+
+u:([2 e:Example/Button2]) $Example/Page0=1 2? Ok $onStopped=1
+
+u:([3 e:Example/Button3]) $Example/Page0=1 3? Ok $onStopped=1

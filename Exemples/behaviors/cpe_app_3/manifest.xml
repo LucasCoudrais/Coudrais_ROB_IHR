@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<package uuid="cpe_app_3" version="0.0.0">
+ <names>
+  <name lang="en_US">cpe_app_3</name>
+ </names>
+ <supportedLanguages>
+  <language>en_US</language>
+  <language>fr_FR</language>
+ </supportedLanguages>
+ <descriptionLanguages>
+  <language>en_US</language>
+  <language>fr_FR</language>
+ </descriptionLanguages>
+ <contents>
+  <behaviorContent path="behavior_1">
+   <userRequestable/>
+   <nature>interactive</nature>
+   <permissions/>
+  </behaviorContent>
+  <dialogContent typeVersion="1.0" topicName="phase2">
+   <topic path="phase2/phase2_enu.top" language="en_US"/>
+   <topic path="phase2/phase2_frf.top" language="fr_FR"/>
+  </dialogContent>
+  <dialogContent typeVersion="1.0" topicName="phase1">
+   <topic path="phase1/phase1_enu.top" language="en_US"/>
+   <topic path="phase1/phase1_frf.top" language="fr_FR"/>
+  </dialogContent>
+ </contents>
+</package>

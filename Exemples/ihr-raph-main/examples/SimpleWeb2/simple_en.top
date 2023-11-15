@@ -1,0 +1,17 @@
+topic: ~simple()
+language: enu
+
+u:([Go e:SimpleWeb/Start]) $SimpleWeb/Page/Selection=1  What will be your choice? Salad, Pizza or Bier ? $SimpleWeb/Page/Selection=1
+
+	u1:([Salad e:SimpleWeb/Button1])	$SimpleWeb/Select="S" Salad? Ok 
+
+	u1:([Pizza e:SimpleWeb/Button2])  	$SimpleWeb/Select="P" Pizza? Ok 
+
+	u1:([Bier e:SimpleWeb/Button3])		$SimpleWeb/Select="B" Bier? Ok 
+
+
+u:(e:SimpleWeb/Next) Do you want something else ? $SimpleWeb/Page/YesNo=1 
+
+	u1:([Yes e:SimpleWeb/ButtonYes]) OK $SimpleWeb/Start=1
+
+	u1:([No e:SimpleWeb/ButtonNo]) $SimpleWeb/Page/Start=1 OK, bye !

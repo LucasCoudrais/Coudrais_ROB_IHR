@@ -1,0 +1,13 @@
+topic: ~ExampleDialog()
+language: frf
+
+# Defining extra concepts out of words or group of words
+concept:(hello) [hello bonjour "ca va"]
+
+# Catching inputs and triggering outputs
+#u:(e:onStart) $onStopped=1
+
+# Replying to speech
+u:(~hello) ~hello
+u:(e:FrontTactilTouched) Ne touche pas à ma tête , merci !
+u:("CPE Lyon") J'aime bien cpe lyon $cpeshow=1

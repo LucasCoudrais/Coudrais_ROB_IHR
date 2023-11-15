@@ -1,0 +1,53 @@
+topic: ~simple()
+language: frf
+
+u:([e:SimpleWeb/Start]) $SimpleWeb/Page/Start=1
+
+u:([Commencer e:SimpleWeb/Home]) $SimpleWeb/Page/Selection=1  Bonjour, que puis je faire pour vous ?
+
+	u1:([Calendrier e:SimpleWeb/Button1]) $SimpleWeb/DateHour=1 Ok
+
+	u1:([Météo e:SimpleWeb/Button2]) $SimpleWeb/Weather=1 Ok
+
+	u1:([Pas éthique e:SimpleWeb/Button3]) $SimpleWeb/NonEthicTip=1 Ok
+
+	u1:([Ethique e:SimpleWeb/Button4]) $SimpleWeb/EthicTip=1 Ok
+
+u:([Commencer e:SimpleWeb/Home2]) $SimpleWeb/Page/Selection=1
+
+	u1:([Calendrier e:SimpleWeb/Button1]) $SimpleWeb/DateHour=1 Ok
+
+	u1:([Météo e:SimpleWeb/Button2]) $SimpleWeb/Weather=1 Ok
+
+	u1:([Pas éthique e:SimpleWeb/Button3]) $SimpleWeb/NonEthicTip=1 Ok
+
+	u1:([Ethique e:SimpleWeb/Button4]) $SimpleWeb/EthicTip=1 Ok
+
+u:(e:SimpleWeb/DateHour) $SimpleWeb/Page/DateHour=1 Nous sommes le ^call(ProjectModule.get_datetime())
+c1:(_*) $1
+
+	u2:([Accueil e:SimpleWeb/ButtonHome1]) $SimpleWeb/Home2=1  
+
+	u2:([Fin e:SimpleWeb/ButtonEnd1]) $SimpleWeb/Start=1  
+
+u:(e:SimpleWeb/Weather) $SimpleWeb/Page/Weather=1 Il fait actuellement ^call(ProjectModule.get_temperature()) degrés. Une humidité de ^call(ProjectModule.get_humidity()) pourcent. Et une pression de ^call(ProjectModule.get_pressure())
+c1:(_*) $1
+
+	u2:([Accueil e:SimpleWeb/ButtonHome2]) $SimpleWeb/Home2=1  
+
+	u2:([Fin e:SimpleWeb/ButtonEnd2]) $SimpleWeb/Start=1  
+
+u:(e:SimpleWeb/NonEthicTip) $SimpleWeb/Page/NonEthicTip=1 T'es pas beau
+
+	u1:([Accueil e:SimpleWeb/ButtonHome3]) $SimpleWeb/Home2=1  
+
+	u1:([Fin e:SimpleWeb/ButtonEnd3]) $SimpleWeb/Start=1  
+
+u:(e:SimpleWeb/EthicTip) $SimpleWeb/Page/EthicTip=1 T'es beau
+
+	u1:([Accueil e:SimpleWeb/ButtonHome4]) $SimpleWeb/Home2=1  
+
+	u1:([Fin e:SimpleWeb/ButtonEnd4]) $SimpleWeb/Start=1  
+
+
+

@@ -1,0 +1,11 @@
+topic: ~simpled()
+language: enu
+
+u:([Go e:SimpleWeb/Start]) $SimpleWeb/Page0="What is your favorite color ?"  What will be your choice? Red, Blue, or Yellow? $SimpleWeb/Page1=1
+
+    u1:([Red e:SimpleWeb/Button1]) $SimpleWeb/Page0="You choose Red, Click to Start or say Go" Red, Good choice !
+
+    u1:([Blue e:SimpleWeb/Button2]) $SimpleWeb/Page0="You choose Blue, Click to Start or say Go" Blue, I like it 
+
+    u1:([Yellow e:SimpleWeb/Button3]) $SimpleWeb/Page0="You choose Yellow, Click to Start or say Go " Yellow, Why not !
+

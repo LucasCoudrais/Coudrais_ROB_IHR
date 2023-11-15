@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <!-- Include meta tag to ensure proper rendering and touch zooming -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="jquery-1.11.2.min.js"></script>
+    <script src="js/sample.js"></script>
+    <script src="/libs/qimessaging/1.0/qimessaging.js"></script>
+
+</head>
+
+<body>
+  <h1>This is an amazing application</h1>
+  </br>
+
+  <a>
+    Say something
+  </a>
+  </br>
+
+  <a>
+    Move
+  </a>
+
+</body>

@@ -1,0 +1,12 @@
+topic: ~simple()
+language: enu
+
+u:([Go e:SimpleWeb/Start]) $SimpleWeb/Page0=1  What will be your choice? 1, 2, ou 3? $SimpleWeb/Page1=1
+
+	u1:([1 e:SimpleWeb/Button1]) $SimpleWeb/Page0=1 1? Ok 
+
+	u1:([2 e:SimpleWeb/Button2]) $SimpleWeb/Page0=1 2? Ok 
+
+	u1:([3 e:SimpleWeb/Button3]) $SimpleWeb/Page0=1 3? Ok 
+
+

@@ -1,0 +1,5 @@
+topic: ~temperature()
+language: frf
+
+u:(e:onStart) Il fait $Weather/Temperature degrés il me semble $onStopped=1
+
