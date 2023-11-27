@@ -22,10 +22,12 @@ class ProjectModule:
         print "MyModule init"
         self.session = session
         self.memory = self.session.service("ALMemory")
+        self.player = self.session.service("ALAudioPlayer")
 
         self.weather_url = "http://api.openweathermap.org/data/2.5/weather?id=6454573&APPID=49b584e311c58fa09794e5e25a19d1af&UNITS=metric"
         self.blague_index = -1
         self.blague_non_index = -1
+        # self.musique_index = -1
 
 
     def __del__(self):
@@ -53,7 +55,6 @@ class ProjectModule:
 
         info_json = info.json()
         main_info = info_json["main"]
-        print "main_info: %s" % main_info
 
         temperature_kelvins = main_info["temp"]
         temperature_degrees = temperature_kelvins - 273.15
@@ -74,7 +75,6 @@ class ProjectModule:
 
         info_json = info.json()
         main_info = info_json["main"]
-        print "main_info: %s" % main_info
 
         pressure = main_info["pressure"]
 
@@ -94,7 +94,6 @@ class ProjectModule:
 
         info_json = info.json()
         main_info = info_json["main"]
-        print "main_info: %s" % main_info
 
         humidity = main_info["humidity"]
 
@@ -114,7 +113,6 @@ class ProjectModule:
 
         info_json = info.json()
         main_info = info_json["main"]
-        print "main_info: %s" % main_info
 
         temperature_kelvins = main_info["temp"]
         temperature_degrees = temperature_kelvins - 273.15
@@ -239,10 +237,33 @@ class ProjectModule:
             result = blagues[self.blague_non_index]
             # self.blague_non_index = -1
 
-        return result    
+        return result  
 
+    def play_random_music(self):        
+        paths = [
+            "/home/nao/.local/share/PackageManager/apps/Projet_CouGir/music/acoustic-guitar-loop-f-91bpm-132687.mp3",
+            "/home/nao/.local/share/PackageManager/apps/Projet_CouGir/music/fat-kick-drumloop-99bpm-141016.mp3",
+            "/home/nao/.local/share/PackageManager/apps/Projet_CouGir/music/pigeons-flying-6351.mp3",
+            "/home/nao/.local/share/PackageManager/apps/Projet_CouGir/music/suspense_strings_001wav-14805.mp3",
+            "/home/nao/.local/share/PackageManager/apps/Projet_CouGir/music/timbo-drumline-loop-103bpm-171091.mp3"
+        ]
+        # if(self.musique_index != -1):
+        #     self.player.pause(self.musique_index)
 
+        randIndex = random.randint(0, paths.__len__()-1)
 
+        #Loads a file and launchs the playing 5 seconds later
+            # fileId = self.player.loadFile(paths[randIndex])
+            # time.sleep(2)
+            # self.musique_index = fileId
+            # print "file ID musique: % i" % self.musique_index
+
+        self.player.playFile(paths[randIndex])
+
+    # def pause_music(self):
+    #     print "file ID musique pause: % i" % self.musique_index
+
+    #     self.player.pause(self.musique_index)
 
 def main(session):
 
@@ -255,6 +276,7 @@ def main(session):
     try:
         tabletService = session.service("ALTabletService")
         tabletService.loadApplication("Projet_CouGir")
+        # tabletService.showWebview()
         tabletService.clearWebview()
         tabletService.showWebview()
 

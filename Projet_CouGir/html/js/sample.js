@@ -5,6 +5,8 @@
     $('#page_selection').hide();
     $('#page_weather').hide(); 
     $('#page_date_hour').hide(); 
+    $('#page_music').hide(); 
+    $('#page_joke_choice').hide();               
     $('#page_joke_choice').hide();               
     $('#page_non_ethical_tip').hide();               
     $('#page_ethical_tip').hide();  
@@ -29,6 +31,7 @@
                 $('#page_start').hide();
                 $('#page_weather').hide(); 
                 $('#page_date_hour').hide(); 
+                $('#page_music').hide(); 
                 $('#page_joke_choice').hide();               
                 $('#page_non_ethical_tip').hide();               
                 $('#page_ethical_tip').hide();   });
@@ -41,6 +44,7 @@
                 $('#page_selection').hide();
                 $('#page_weather').hide(); 
                 $('#page_date_hour').hide(); 
+                $('#page_music').hide(); 
                 $('#page_joke_choice').hide();               
                 $('#page_non_ethical_tip').hide();               
                 $('#page_ethical_tip').hide();  
@@ -54,6 +58,7 @@
                 $('#page_selection').show();
                 $('#page_weather').hide(); 
                 $('#page_date_hour').hide(); 
+                $('#page_music').hide(); 
                 $('#page_joke_choice').hide();               
                 $('#page_non_ethical_tip').hide();               
                 $('#page_ethical_tip').hide();  
@@ -103,6 +108,7 @@
                     $('#page_selection').hide();
                     $('#page_weather').show();               
                     $('#page_date_hour').hide(); 
+                    $('#page_music').hide(); 
                     $('#page_joke_choice').hide();               
                     $('#page_non_ethical_tip').hide();               
                     $('#page_ethical_tip').hide();                
@@ -128,12 +134,27 @@
                 $('#page_selection').hide();
                 $('#page_weather').hide();               
                 $('#page_date_hour').show();   
+                $('#page_music').hide(); 
                 $('#page_joke_choice').hide();               
                 $('#page_non_ethical_tip').hide();               
                 $('#page_ethical_tip').hide();              
             });
         }); 
         
+        ALMemory.subscriber("SimpleWeb/Page/Music").done(function(subscriber) {
+
+            subscriber.signal.connect(function() {  
+                $('#page_start').hide();             
+                $('#page_selection').hide();
+                $('#page_weather').hide();               
+                $('#page_date_hour').hide();   
+                $('#page_music').show(); 
+                $('#page_joke_choice').hide();               
+                $('#page_non_ethical_tip').hide();               
+                $('#page_ethical_tip').hide();              
+            });
+        }); 
+
         ALMemory.subscriber("SimpleWeb/Page/SelectionJoke").done(function(subscriber) {
 
             subscriber.signal.connect(function() {  
@@ -141,6 +162,7 @@
                 $('#page_selection').hide();
                 $('#page_weather').hide();               
                 $('#page_date_hour').hide();               
+                $('#page_music').hide(); 
                 $('#page_joke_choice').show();               
                 $('#page_non_ethical_tip').hide();               
                 $('#page_ethical_tip').hide();               
@@ -165,6 +187,7 @@
                 $('#page_selection').hide();
                 $('#page_weather').hide();               
                 $('#page_date_hour').hide();               
+                $('#page_music').hide(); 
                 $('#page_joke_choice').hide();               
                 $('#page_non_ethical_tip').show();               
                 $('#page_ethical_tip').hide();               
@@ -173,22 +196,23 @@
 
         ALMemory.subscriber("SimpleWeb/Page/EthicTip").done(function(subscriber) {
             
-            session.service("ProjectModule").done(function (tts) {
-                // tts is a proxy to the ALTextToSpeech service
-                tts.blague_aleatoire_ethic().done(function (ethic) {
-                    document.getElementById("text_ethic_tip").innerHTML = ethic;
-                  }).fail(function (error) {
-                    console.log("An error occurred: " + error);
-                  });
-              }).fail(function (error) {
-                console.log("An error occurred:", error);
-            });
+            // session.service("ProjectModule").done(function (tts) {
+            //     // tts is a proxy to the ALTextToSpeech service
+            //     tts.blague_aleatoire_ethic().done(function (ethic) {
+            //         document.getElementById("text_ethic_tip").innerHTML = ethic;
+            //       }).fail(function (error) {
+            //         console.log("An error occurred: " + error);
+            //       });
+            //   }).fail(function (error) {
+            //     console.log("An error occurred:", error);
+            // });
 
             subscriber.signal.connect(function() {  
                 $('#page_start').hide();             
                 $('#page_selection').hide();
                 $('#page_weather').hide();               
                 $('#page_date_hour').hide();               
+                $('#page_music').hide(); 
                 $('#page_joke_choice').hide();               
                 $('#page_non_ethical_tip').hide();               
                 $('#page_ethical_tip').show();               
@@ -218,6 +242,11 @@
         raise('SimpleWeb/Button3', 1)       
     });
 
+    $('#page_selection_4').on('click', function() {
+        console.log("click 4");
+        raise('SimpleWeb/Button4', 1)       
+    });
+
     $('#ethic_joke').on('click', function() {
         console.log("click ButtonEthic");
         raise('SimpleWeb/ButtonEthic', 1)       
@@ -227,11 +256,6 @@
         console.log("click ButtonNonEthic");
         raise('SimpleWeb/ButtonNonEthic', 1)       
     });
-
-    // $('#page_selection_4').on('click', function() {
-    //     console.log("click 4");
-    //     raise('SimpleWeb/Button4', 1)       
-    // });
 
     $('#page_home1').on('click', function() {
         console.log("click ButtonHome");
@@ -274,6 +298,15 @@
         raise('SimpleWeb/Home2', 1)      
     });
     $('#page_end5').on('click', function() {
+        console.log("click ButtonEnd");
+        raise('SimpleWeb/Start', 1)       
+    }); 
+    
+    $('#page_home6').on('click', function() {
+        console.log("click ButtonHome");
+        raise('SimpleWeb/Home2', 1)      
+    });
+    $('#page_end6').on('click', function() {
         console.log("click ButtonEnd");
         raise('SimpleWeb/Start', 1)       
     });  

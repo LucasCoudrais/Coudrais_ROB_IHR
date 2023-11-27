@@ -11,6 +11,8 @@ u:([Commencer e:SimpleWeb/Home]) $SimpleWeb/Page/Selection=1  Bonjour, que puis 
 
 	u1:([Blagues e:SimpleWeb/Button3]) $SimpleWeb/Jokes=1 Ok
 
+	u1:([Musique e:SimpleWeb/Button4]) $SimpleWeb/Music=1 Ok
+
 
 u:([Commencer e:SimpleWeb/Home2]) $SimpleWeb/Page/Selection=1
 
@@ -19,6 +21,8 @@ u:([Commencer e:SimpleWeb/Home2]) $SimpleWeb/Page/Selection=1
 	u1:([Météo e:SimpleWeb/Button2]) $SimpleWeb/Weather=1 Ok
 
 	u1:([Blagues e:SimpleWeb/Button3]) $SimpleWeb/Jokes=1 Ok
+
+	u1:([Musique e:SimpleWeb/Button4]) $SimpleWeb/Music=1 Ok
 
 u:(e:SimpleWeb/DateHour) $SimpleWeb/Page/DateHour=1 Nous sommes le ^call(ProjectModule.get_datetime())
 c1:(_*) $1
@@ -29,6 +33,12 @@ c1:(_*) $1
 
 u:(e:SimpleWeb/Weather) $SimpleWeb/Page/Weather=1 Il fait actuellement ^call(ProjectModule.get_temperature()) degrés. Une humidité de ^call(ProjectModule.get_humidity()) pourcent. Et une pression de ^call(ProjectModule.get_pressure())
 c1:(_*) $1
+
+	u2:([Accueil e:SimpleWeb/ButtonHome2]) $SimpleWeb/Home2=1  
+
+	u2:([Fin e:SimpleWeb/ButtonEnd2]) $SimpleWeb/Start=1  
+
+u:(e:SimpleWeb/Music) ^call(ProjectModule.play_random_music()) $SimpleWeb/Page/Music=1
 
 	u2:([Accueil e:SimpleWeb/ButtonHome2]) $SimpleWeb/Home2=1  
 
