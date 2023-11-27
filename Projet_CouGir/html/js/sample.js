@@ -149,20 +149,16 @@
         
         ALMemory.subscriber("SimpleWeb/Page/NonEthicTip").done(function(subscriber) {
 
-            // session.service("ProjectModule").done(function (tts) {
-            //     // tts is a proxy to the ALTextToSpeech service
-            //     tts.blague_aleatoire_non_ethic().done(function (non_ethic) {
-            //         document.getElementById("text_non_ethic_tip").innerHTML = non_ethic;
-            //       }).fail(function (error) {
-            //         console.log("An error occurred: " + error);
-            //       });
-            //   }).fail(function (error) {
-            //     console.log("An error occurred:", error);
-            // });
-
-            ALMemory.getData("non_ethic").then(function(data){
-                document.getElementById("text_non_ethic_tip").innerHTML = data;
-            })
+            session.service("ProjectModule").done(function (tts) {
+                // tts is a proxy to the ALTextToSpeech service
+                tts.blague_aleatoire_non_ethic().done(function (non_ethic) {
+                    document.getElementById("text_non_ethic_tip").innerHTML = non_ethic;
+                  }).fail(function (error) {
+                    console.log("An error occurred: " + error);
+                  });
+              }).fail(function (error) {
+                console.log("An error occurred:", error);
+            });
 
             subscriber.signal.connect(function() {  
                 $('#page_start').hide();             
@@ -177,21 +173,17 @@
 
         ALMemory.subscriber("SimpleWeb/Page/EthicTip").done(function(subscriber) {
             
-            // session.service("ProjectModule").done(function (tts) {
-            //     // tts is a proxy to the ALTextToSpeech service
-            //     tts.blague_aleatoire_ethic().done(function (ethic) {
-            //         document.getElementById("text_ethic_tip").innerHTML = ethic;
-            //       }).fail(function (error) {
-            //         console.log("An error occurred: " + error);
-            //       });
-            //   }).fail(function (error) {
-            //     console.log("An error occurred:", error);
-            // });
+            session.service("ProjectModule").done(function (tts) {
+                // tts is a proxy to the ALTextToSpeech service
+                tts.blague_aleatoire_ethic().done(function (ethic) {
+                    document.getElementById("text_ethic_tip").innerHTML = ethic;
+                  }).fail(function (error) {
+                    console.log("An error occurred: " + error);
+                  });
+              }).fail(function (error) {
+                console.log("An error occurred:", error);
+            });
 
-            ALMemory.getData("ethic").then(function(data){
-                document.getElementById("text_ethic_tip").innerHTML = data;
-            })
-            
             subscriber.signal.connect(function() {  
                 $('#page_start').hide();             
                 $('#page_selection').hide();

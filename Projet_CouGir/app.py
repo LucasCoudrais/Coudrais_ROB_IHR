@@ -24,8 +24,8 @@ class ProjectModule:
         self.memory = self.session.service("ALMemory")
 
         self.weather_url = "http://api.openweathermap.org/data/2.5/weather?id=6454573&APPID=49b584e311c58fa09794e5e25a19d1af&UNITS=metric"
-        self.blague = ""
-        self.blague_non = ""
+        self.blague_index = -1
+        self.blague_non_index = -1
 
 
     def __del__(self):
@@ -53,6 +53,7 @@ class ProjectModule:
 
         info_json = info.json()
         main_info = info_json["main"]
+        print "main_info: %s" % main_info
 
         temperature_kelvins = main_info["temp"]
         temperature_degrees = temperature_kelvins - 273.15
@@ -73,6 +74,7 @@ class ProjectModule:
 
         info_json = info.json()
         main_info = info_json["main"]
+        print "main_info: %s" % main_info
 
         pressure = main_info["pressure"]
 
@@ -92,6 +94,7 @@ class ProjectModule:
 
         info_json = info.json()
         main_info = info_json["main"]
+        print "main_info: %s" % main_info
 
         humidity = main_info["humidity"]
 
@@ -111,6 +114,7 @@ class ProjectModule:
 
         info_json = info.json()
         main_info = info_json["main"]
+        print "main_info: %s" % main_info
 
         temperature_kelvins = main_info["temp"]
         temperature_degrees = temperature_kelvins - 273.15
@@ -197,28 +201,18 @@ class ProjectModule:
             "Que fait une ampoule quand elle grille ?\nElle appelle à LED"
         ]
 
-        # # if(self.blague_index == -2):
-        # #     self.blague_index = -1
-        # if(self.blague_index == -1):
-        #     self.blague_index = random.randint(0, blagues.__len__()-1)
-        #     result = blagues[self.blague_index]
-        # else : 
-        #     result = blagues[self.blague_index]
-        #     # self.blague_index = -1
+        # if(self.blague_index == -2):
+        #     self.blague_index = -1
+        if(self.blague_index == -1):
+            self.blague_index = random.randint(0, blagues.__len__()-1)
+            result = blagues[self.blague_index]
+        else : 
+            result = blagues[self.blague_index]
+            # self.blague_index = -1
 
-        # print "blague ethique: % s" % result
-
-        result = random.choice(blagues)
-        self.blague = result
-        print "blague eth: % s" % result
-        self.memory.insertData("ethic", result)
+        print "blague ethique: % s" % result
 
         return result
-    
-    # def blague_aleatoire_ethic_pas_nouveau(self):
-    #     print "blague eth pas nouveau : % s" % self.blague
-
-    #     return self.blague
     
     def blague_aleatoire_non_ethic(self):
         blagues = [
@@ -236,26 +230,17 @@ class ProjectModule:
             "Quel est le point commun entre un juif et des chaussures ?Il y en a plus en 39 qu’en 45.",
         ]
 
-        # # if(self.blague_non_index == -2):
-        # #     self.blague_non_index = -1
-        # if(self.blague_non_index == -1):
-        #     self.blague_non_index = random.randint(0, blagues.__len__()-1)
-        #     result = blagues[self.blague_non_index]
-        # else : 
-        #     result = blagues[self.blague_non_index]
-        #     # self.blague_non_index = -1
+        # if(self.blague_non_index == -2):
+        #     self.blague_non_index = -1
+        if(self.blague_non_index == -1):
+            self.blague_non_index = random.randint(0, blagues.__len__()-1)
+            result = blagues[self.blague_non_index]
+        else : 
+            result = blagues[self.blague_non_index]
+            # self.blague_non_index = -1
 
-        result = random.choice(blagues)
-        self.blague_non = result
-        print "blague non eth: % s" % result
-        self.memory.insertData("non_ethic", result)
+        return result    
 
-        return result
-
-    # def blague_aleatoire_non_ethic_pas_nouveau(self):
-    #     print "blague non eth pas nouveau : % s" % self.blague_non
-
-    #     return self.blague_non
 
 
 
