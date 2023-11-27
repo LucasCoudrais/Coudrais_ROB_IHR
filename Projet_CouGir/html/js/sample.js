@@ -11,11 +11,6 @@
     $('#page_non_ethical_tip').hide();               
     $('#page_ethical_tip').hide();  
 
-    // $('#page_selection_1_selec').hide();
-    // $('#page_selection_2_selec').hide();
-    // $('#page_selection_3_selec').hide();    
-
-
     function raise(event, value) {
         session.service("ALMemory").done(function(ALMemory) {
             ALMemory.raiseEvent(event, value);
@@ -66,44 +61,40 @@
         });
 
         ALMemory.subscriber("SimpleWeb/Page/Weather").done(function(subscriber) {
-
-            session.service("ProjectModule").done(function (tts) {
-                // tts is a proxy to the ALTextToSpeech service
-                tts.get_temperature().done(function (temp) {
-
-                    tts.get_humidity().done(function (hum) {
-
-                        tts.get_pressure().done(function (press) {
-                            document.getElementById("text_custom_weather").innerHTML = "Il fait actuellement " + temp + " degrés. Une humidité de " + hum + " pourcent. Et une pression de " + press;
-                            console.log("I speak " + lang);
+                
+                subscriber.signal.connect(function() {  
+                    session.service("ProjectModule").done(function (tts) {
+                        // tts is a proxy to the ALTextToSpeech service
+                        tts.get_temperature().done(function (temp) {
+        
+                            tts.get_humidity().done(function (hum) {
+        
+                                tts.get_pressure().done(function (press) {
+                                    document.getElementById("text_custom_weather").innerHTML = "Il fait actuellement " + temp + " degrés. Une humidité de " + hum + " pourcent. Et une pression de " + press;
+                                    console.log("I speak " + lang);
+                                    }).fail(function (error) {
+                                        console.log("An error occurred: " + error);
+                                    });
+                                    console.log("I speak " + lang);
+                                }).fail(function (error) {
+                                    console.log("An error occurred: " + error);
+                                });
+                                console.log("I speak " + lang);
                             }).fail(function (error) {
                                 console.log("An error occurred: " + error);
                             });
-                            console.log("I speak " + lang);
                         }).fail(function (error) {
-                            console.log("An error occurred: " + error);
+                        console.log("An error occurred:", error);
                         });
-                        console.log("I speak " + lang);
-                    }).fail(function (error) {
-                        console.log("An error occurred: " + error);
-                    });
-                }).fail(function (error) {
-                console.log("An error occurred:", error);
-                });
+        
+                    session.service("ProjectModule").done(function (tts) {
+                            // tts is a proxy to the ALTextToSpeech service
+                            tts.get_weather_icon().done(function (string) {
+                                document.getElementById("weather_img").setAttribute("src", string);
+                            }).fail(function (error) {
+                            console.log("An error occurred:", error);
+                        });
 
-            session.service("ProjectModule").done(function (tts) {
-                    // tts is a proxy to the ALTextToSpeech service
-                    tts.get_weather_icon().done(function (string) {
-                        document.getElementById("weather_img").setAttribute("src", string);
-                    }).fail(function (error) {
-                    console.log("An error occurred:", error);
-                });
-
-                
-                // document.getElementById("text_custom_weather").innerHTML = "salut ";
-                // session.service("ProjectModule").get_temperature();
-                
-                subscriber.signal.connect(function() {  
                     $('#page_start').hide();             
                     $('#page_selection').hide();
                     $('#page_weather').show();               
@@ -118,18 +109,19 @@
 
         ALMemory.subscriber("SimpleWeb/Page/DateHour").done(function(subscriber) {
 
-            session.service("ProjectModule").done(function (tts) {
-                // tts is a proxy to the ALTextToSpeech service
-                tts.get_datetime().done(function (datetime) {
-                    document.getElementById("text_custom_datetime").innerHTML = "Nous sommes le " + datetime;
-                  }).fail(function (error) {
-                    console.log("An error occurred: " + error);
-                  });
-              }).fail(function (error) {
-                console.log("An error occurred:", error);
-            });
-
             subscriber.signal.connect(function() {  
+
+                session.service("ProjectModule").done(function (tts) {
+                    // tts is a proxy to the ALTextToSpeech service
+                    tts.get_datetime().done(function (datetime) {
+                        document.getElementById("text_custom_datetime").innerHTML = "Nous sommes le " + datetime;
+                      }).fail(function (error) {
+                        console.log("An error occurred: " + error);
+                      });
+                  }).fail(function (error) {
+                    console.log("An error occurred:", error);
+                });
+
                 $('#page_start').hide();             
                 $('#page_selection').hide();
                 $('#page_weather').hide();               
@@ -171,18 +163,19 @@
         
         ALMemory.subscriber("SimpleWeb/Page/NonEthicTip").done(function(subscriber) {
 
-            session.service("ProjectModule").done(function (tts) {
-                // tts is a proxy to the ALTextToSpeech service
-                tts.blague_aleatoire_non_ethic().done(function (non_ethic) {
-                    document.getElementById("text_non_ethic_tip").innerHTML = non_ethic;
-                  }).fail(function (error) {
-                    console.log("An error occurred: " + error);
-                  });
-              }).fail(function (error) {
-                console.log("An error occurred:", error);
-            });
-
             subscriber.signal.connect(function() {  
+                
+                session.service("ProjectModule").done(function (tts) {
+                    // tts is a proxy to the ALTextToSpeech service
+                    tts.blague_aleatoire_non_ethic().done(function (non_ethic) {
+                        document.getElementById("text_non_ethic_tip").innerHTML = non_ethic;
+                    }).fail(function (error) {
+                        console.log("An error occurred: " + error);
+                    });
+                }).fail(function (error) {
+                    console.log("An error occurred:", error);
+                });
+
                 $('#page_start').hide();             
                 $('#page_selection').hide();
                 $('#page_weather').hide();               
@@ -195,19 +188,20 @@
         });   
 
         ALMemory.subscriber("SimpleWeb/Page/EthicTip").done(function(subscriber) {
-            
-            // session.service("ProjectModule").done(function (tts) {
-            //     // tts is a proxy to the ALTextToSpeech service
-            //     tts.blague_aleatoire_ethic().done(function (ethic) {
-            //         document.getElementById("text_ethic_tip").innerHTML = ethic;
-            //       }).fail(function (error) {
-            //         console.log("An error occurred: " + error);
-            //       });
-            //   }).fail(function (error) {
-            //     console.log("An error occurred:", error);
-            // });
 
             subscriber.signal.connect(function() {  
+
+                session.service("ProjectModule").done(function (tts) {
+                    // tts is a proxy to the ALTextToSpeech service
+                    tts.blague_aleatoire_ethic().done(function (ethic) {
+                        document.getElementById("text_ethic_tip").innerHTML = ethic;
+                      }).fail(function (error) {
+                        console.log("An error occurred: " + error);
+                      });
+                  }).fail(function (error) {
+                    console.log("An error occurred:", error);
+                });
+
                 $('#page_start').hide();             
                 $('#page_selection').hide();
                 $('#page_weather').hide();               

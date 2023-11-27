@@ -23,11 +23,15 @@ class ProjectModule:
         self.session = session
         self.memory = self.session.service("ALMemory")
         self.player = self.session.service("ALAudioPlayer")
+        self.behavior = self.session.service("ALBehaviorManager")
 
         self.weather_url = "http://api.openweathermap.org/data/2.5/weather?id=6454573&APPID=49b584e311c58fa09794e5e25a19d1af&UNITS=metric"
         self.blague_index = -1
         self.blague_non_index = -1
         # self.musique_index = -1
+
+
+
 
 
     def __del__(self):
@@ -199,14 +203,12 @@ class ProjectModule:
             "Que fait une ampoule quand elle grille ?\nElle appelle à LED"
         ]
 
-        # if(self.blague_index == -2):
-        #     self.blague_index = -1
         if(self.blague_index == -1):
             self.blague_index = random.randint(0, blagues.__len__()-1)
             result = blagues[self.blague_index]
         else : 
             result = blagues[self.blague_index]
-            # self.blague_index = -1
+            self.blague_index = -1
 
         print "blague ethique: % s" % result
 
@@ -228,16 +230,38 @@ class ProjectModule:
             "Quel est le point commun entre un juif et des chaussures ?Il y en a plus en 39 qu’en 45.",
         ]
 
-        # if(self.blague_non_index == -2):
-        #     self.blague_non_index = -1
         if(self.blague_non_index == -1):
             self.blague_non_index = random.randint(0, blagues.__len__()-1)
             result = blagues[self.blague_non_index]
         else : 
             result = blagues[self.blague_non_index]
-            # self.blague_non_index = -1
+            self.blague_non_index = -1
 
         return result  
+    
+
+    def hello_arm(self):
+        """
+        Launch and stop a behavior, if possible.
+        """
+        # Check that the behavior exists.
+        if (self.behavior.isBehaviorInstalled("Stand/Gestures/Hey_1")):
+            # Check that it is not already running.
+            if (not self.behavior.isBehaviorRunning("Stand/Gestures/Hey_1")):
+                # Launch behavior. This is a blocking call, use _async=True if you do not
+                # want to wait for the behavior to finish.
+                self.behavior.startBehavior("Stand/Gestures/Hey_1", _async=True)
+                time.sleep(0.5)
+            else:
+                print "Behavior is already running."
+
+        else:
+            print "Behavior not found."
+        return
+
+
+
+
 
     def play_random_music(self):        
         paths = [
@@ -247,23 +271,11 @@ class ProjectModule:
             "/home/nao/.local/share/PackageManager/apps/Projet_CouGir/music/suspense_strings_001wav-14805.mp3",
             "/home/nao/.local/share/PackageManager/apps/Projet_CouGir/music/timbo-drumline-loop-103bpm-171091.mp3"
         ]
-        # if(self.musique_index != -1):
-        #     self.player.pause(self.musique_index)
+
 
         randIndex = random.randint(0, paths.__len__()-1)
 
-        #Loads a file and launchs the playing 5 seconds later
-            # fileId = self.player.loadFile(paths[randIndex])
-            # time.sleep(2)
-            # self.musique_index = fileId
-            # print "file ID musique: % i" % self.musique_index
-
         self.player.playFile(paths[randIndex])
-
-    # def pause_music(self):
-    #     print "file ID musique pause: % i" % self.musique_index
-
-    #     self.player.pause(self.musique_index)
 
 def main(session):
 
@@ -277,7 +289,7 @@ def main(session):
         tabletService = session.service("ALTabletService")
         tabletService.loadApplication("Projet_CouGir")
         # tabletService.showWebview()
-        tabletService.clearWebview()
+        # tabletService.clearWebview()
         tabletService.showWebview()
 
     except Exception, e:
@@ -299,6 +311,7 @@ def main(session):
     	# Starting the dialog engine - we need to type an arbitrary string as the identifier
     	# We subscribe only ONCE, regardless of the number of topics we have activated
     	ALDialog.subscribe('simple2')
+        my_module.hello_arm()
 
     except Exception, e:
         print "Error was: ", e

@@ -1,9 +1,9 @@
 topic: ~simple()
 language: frf
 
-u:([e:SimpleWeb/Start]) $SimpleWeb/Page/Start=1
+u:([e:SimpleWeb/Start]) $SimpleWeb/Page/Start=1 
 
-u:([Commencer e:SimpleWeb/Home]) $SimpleWeb/Page/Selection=1  Bonjour, que puis je faire pour vous ?
+u:([Commencer e:SimpleWeb/Home]) $SimpleWeb/Page/Selection=1  Bonjour, que puis je faire pour vous ? 
 
 	u1:([Calendrier e:SimpleWeb/Button1]) $SimpleWeb/DateHour=1 Ok
 
@@ -14,7 +14,7 @@ u:([Commencer e:SimpleWeb/Home]) $SimpleWeb/Page/Selection=1  Bonjour, que puis 
 	u1:([Musique e:SimpleWeb/Button4]) $SimpleWeb/Music=1 Ok
 
 
-u:([Commencer e:SimpleWeb/Home2]) $SimpleWeb/Page/Selection=1
+u:([Commencer e:SimpleWeb/Home2]) $SimpleWeb/Page/Selection=1 
 
 	u1:([Calendrier e:SimpleWeb/Button1]) $SimpleWeb/DateHour=1 Ok
 
@@ -56,6 +56,7 @@ u:([e:SimpleWeb/Jokes]) $SimpleWeb/Page/SelectionJoke=1 Quel type de blague voul
 
 u:(e:SimpleWeb/NonEthicTip) $SimpleWeb/Page/NonEthicTip=1 ^call(ProjectModule.blague_aleatoire_non_ethic())
 c1:(_*) $1
+
 	u1:([Accueil e:SimpleWeb/ButtonHome4]) $SimpleWeb/Home2=1  
 
 	u1:([Fin e:SimpleWeb/ButtonEnd4]) $SimpleWeb/Start=1  
