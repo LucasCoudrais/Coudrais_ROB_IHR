@@ -8,7 +8,9 @@ import sys
 import time
 import signal
 import requests
+import random
 from datetime import datetime
+
 
 class ProjectModule:
     """
@@ -22,6 +24,8 @@ class ProjectModule:
         self.memory = self.session.service("ALMemory")
 
         self.weather_url = "http://api.openweathermap.org/data/2.5/weather?id=6454573&APPID=49b584e311c58fa09794e5e25a19d1af&UNITS=metric"
+        self.blague_index = -1
+        self.blague_non_index = -1
 
 
     def __del__(self):
@@ -115,8 +119,6 @@ class ProjectModule:
         temperature_kelvins = main_info["temp"]
         temperature_degrees = temperature_kelvins - 273.15
 
-        print "temperatureeeeeeeee: % s" % temperature_degrees
-
         answer = int(temperature_degrees)
         if answer < 0:
             return "images/snow.png"
@@ -157,6 +159,89 @@ class ProjectModule:
 
         return formatted_datetime
 
+    def blague_aleatoire_ethic(self):
+        blagues = [
+            "J’ai 40 boules toutes rondes et j’excite les vieilles dames, Qui suis-je ?\nLe Bingo !",
+            "Qu’est-ce qu’un nem avec des écouteurs ?\nUn nem P3.",
+            "Quel est le comble pour un joueur de bowling ?\nC’est de perdre la boule !",
+            "Quel métier les chiens peuvent-ils exercer ?\nElectrichien !",
+            "Pourquoi les plongeurs sous-marin plongent-ils toujours en arrière et jamais en avant ?\nParce que sinon ils tombent dans le bateau.",
+            "Pourquoi les flamands roses lèvent une patte en dormant ?\nParce que s’ils levaient les deux, ils tomberaient.",
+            "Quelle est la plante qu’on n’arrose jamais et qu’on écrase sans qu’elle ne s’abîme ?\nLa plante des pieds.",
+            "Qu’est-ce qu’un homme avec une mitraillette dans un champ de blé ?\nUn céréale killer…",
+            "Quelle est la différence entre un crocodile et un alligator ?\nC’est Caïman la même chose…",
+            "Comment appelle-t-on les petits d’une oie ?\nLes noisettes.",
+            "Pourquoi les maisons en Angleterre ne sont-elles pas solides ?\nParce qu’elles sont en glaise.",
+            "Que fait une vache avec une radio ?\nDe la meuhsique !",
+            "Quel est le comble pour un marin ?\nAvoir le nez qui coule !",
+            "Que dit un oignon quand il se cogne ?\nAïe",
+            "Quelles sont les lettres les plus vieilles de l’alphabet ?\nA G",
+            "Connais-tu la blague de la chaise ?\nElle est pliante !",
+            "Comment appelle-t-on du riz que l’on peut manger en voiture ?\nDu risotto",
+            "Quel est le fruit préféré de l’homme ?\nL’ananas",
+            "Qu’est-ce qu’un squelette dans une armoire ?\nC’est quelqu’un qui a gagné à cache-cache.",
+            "Quelle est la ressemblance entre un facteur et un jongleur ?\nIl leur faut tous les deux beaucoup d’adresse.",
+            "Quel est le comble pour un marin ?\nAvoir le nez qui coule !",
+            "Quels sont les animaux qui sont souvent fatigués ?\nLe dodo et le paresseux !",
+            "Quelle est la blague à deux balles ?\nPan Pan !",
+            "A combien rouliez-vous ? demande le gendarme.\nA deux seulement, mais si vous voulez monter, il reste de la place",
+            "Quel est le comble pour un professeur de géographie ?\nC’est de perdre le nord",
+            "De quelle couleur sont les parapluies quand il pleut ?\nIls sont tout verts !",
+            "Que dit un vitrier à son fils pour qu’il soit sage ?\nTiens-toi à carreaux si tu veux une glace !",
+            "Quelle est la profession du soleil ?\nChef de rayons.",
+            "Que dit un informaticien quand il s’ennuie ?\nJe me fichier.",
+            "Quel est l’animal le plus à la mode ?\nLa taupe modèle !",
+            "Que dit un citron qui fait un cambriolage ?\nPlus un zeste !!",
+            "Quel est le sport préféré des chèvres ?\nL’aéro-bique",
+            "Quel est le sport préféré des insectes ?\nLe criquet",
+            "Comment sait-on quand c’est un gorille qui sonne à la porte ?\nÇa fait king-kong !",
+            "Quel super-héros joue le mieux au base-ball ?\nBatte-Man",
+            "Quel est le point commun entre un pêcheur et un mannequin ?\nIls surveillent leur ligne !",
+            "Pourquoi les escargots ne font jamais de sport ?\nParce qu’ils en bavent.",
+            "Que fait une ampoule quand elle grille ?\nElle appelle à LED"
+        ]
+
+        # if(self.blague_index == -2):
+        #     self.blague_index = -1
+        if(self.blague_index == -1):
+            self.blague_index = random.randint(0, blagues.__len__()-1)
+            result = blagues[self.blague_index]
+        else : 
+            result = blagues[self.blague_index]
+            # self.blague_index = -1
+
+        print "blague ethique: % s" % result
+
+        return result
+    
+    def blague_aleatoire_non_ethic(self):
+        blagues = [
+            "Des enfants sonnent chez une dame. La dame leur répond :\nQu’y a-t-il ?\nOn aimerait savoir si votre fils Titouan peut jouer avec nous ?\nMais vous savez que Titouan n’a ni bras ni jambe ?\nOui mais on a besoin d’un ballon.",
+            "Pourquoi la petite fille tombe-t-elle de la balançoire ?\nParce qu'elle n’a pas de bras.",
+            "Qu'est-ce qui est pire qu'un bébé dans une poubelle ?\nUn bébé dans deux poubelles.",
+            "Qu'est-ce qui est mieux que gagner une médaille d'or aux Jeux Paralympiques ?\nMarcher.",
+            "Que faire quand on trouve un épileptique en crise dans une baignoire ?\nAjouter de la lessive et y jeter son linge sale.",
+            "Maman, maman, papa s'est pendu dans le jardin !\nPoisson d’avril ! Il s’est pendu dans le grenier !",
+            "Un enfant juif dans un camp de concentration joue avec de la poussière. Un garde s’approche et dit :\nEh bien alors ? On joue avec Papa et Maman ?",
+            "Un père à son fils :\nFiston, tu sais ce qu’a dit ta sœur quand elle a perdu sa virginité ?\nOh non papa…\nExactement !",
+            "Ma femme a rigolé quand je lui ai dit que j’avais encore le corps d’un jeune de 18 ans. Elle a beaucoup moins ri quand elle l’a vu en morceaux dans le congélateur.",
+            "Dans une classe, une professeur demande à ses élèves :\nQui peut me dire quels sont les meilleurs matériaux combustibles ?\nUn élève juif, ayant la réponse, lève la main en espérant être interrogé :\nJe sais ! Je sais ! Moi Madame ! Moi !\nExcellente réponse quoi d’autre ?",
+            "Quel est le point commun entre un nécrophile et un homme qui se baigne en Bretagne ?\nTous les deux disent : « Elle est froide mais une fois dedans, elle est bonne. »",
+            "Quel est le point commun entre un juif et des chaussures ?Il y en a plus en 39 qu’en 45.",
+        ]
+
+        # if(self.blague_non_index == -2):
+        #     self.blague_non_index = -1
+        if(self.blague_non_index == -1):
+            self.blague_non_index = random.randint(0, blagues.__len__()-1)
+            result = blagues[self.blague_non_index]
+        else : 
+            result = blagues[self.blague_non_index]
+            # self.blague_non_index = -1
+
+        return result    
+
+
 
 
 def main(session):
@@ -170,6 +255,7 @@ def main(session):
     try:
         tabletService = session.service("ALTabletService")
         tabletService.loadApplication("Projet_CouGir")
+        tabletService.clearWebview()
         tabletService.showWebview()
 
     except Exception, e:

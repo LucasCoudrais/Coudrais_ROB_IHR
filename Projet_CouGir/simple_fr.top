@@ -9,9 +9,8 @@ u:([Commencer e:SimpleWeb/Home]) $SimpleWeb/Page/Selection=1  Bonjour, que puis 
 
 	u1:([Météo e:SimpleWeb/Button2]) $SimpleWeb/Weather=1 Ok
 
-	u1:([Pas éthique e:SimpleWeb/Button3]) $SimpleWeb/NonEthicTip=1 Ok
+	u1:([Blagues e:SimpleWeb/Button3]) $SimpleWeb/Jokes=1 Ok
 
-	u1:([Ethique e:SimpleWeb/Button4]) $SimpleWeb/EthicTip=1 Ok
 
 u:([Commencer e:SimpleWeb/Home2]) $SimpleWeb/Page/Selection=1
 
@@ -19,9 +18,7 @@ u:([Commencer e:SimpleWeb/Home2]) $SimpleWeb/Page/Selection=1
 
 	u1:([Météo e:SimpleWeb/Button2]) $SimpleWeb/Weather=1 Ok
 
-	u1:([Pas éthique e:SimpleWeb/Button3]) $SimpleWeb/NonEthicTip=1 Ok
-
-	u1:([Ethique e:SimpleWeb/Button4]) $SimpleWeb/EthicTip=1 Ok
+	u1:([Blagues e:SimpleWeb/Button3]) $SimpleWeb/Jokes=1 Ok
 
 u:(e:SimpleWeb/DateHour) $SimpleWeb/Page/DateHour=1 Nous sommes le ^call(ProjectModule.get_datetime())
 c1:(_*) $1
@@ -37,17 +34,28 @@ c1:(_*) $1
 
 	u2:([Fin e:SimpleWeb/ButtonEnd2]) $SimpleWeb/Start=1  
 
-u:(e:SimpleWeb/NonEthicTip) $SimpleWeb/Page/NonEthicTip=1 T'es pas beau
+u:([e:SimpleWeb/Jokes]) $SimpleWeb/Page/SelectionJoke=1 Quel type de blague voulez vous ?
 
+	u1:([éthique e:SimpleWeb/ButtonEthic]) $SimpleWeb/EthicTip=1 Ok
+
+	u1:([pas éthique e:SimpleWeb/ButtonNonEthic]) $SimpleWeb/NonEthicTip=1 Ok
+	
 	u1:([Accueil e:SimpleWeb/ButtonHome3]) $SimpleWeb/Home2=1  
 
-	u1:([Fin e:SimpleWeb/ButtonEnd3]) $SimpleWeb/Start=1  
+	u1:([Fin e:SimpleWeb/ButtonEnd3]) $SimpleWeb/Start=1 
 
-u:(e:SimpleWeb/EthicTip) $SimpleWeb/Page/EthicTip=1 T'es beau
-
+u:(e:SimpleWeb/NonEthicTip) $SimpleWeb/Page/NonEthicTip=1 ^call(ProjectModule.blague_aleatoire_non_ethic())
+c1:(_*) $1
 	u1:([Accueil e:SimpleWeb/ButtonHome4]) $SimpleWeb/Home2=1  
 
 	u1:([Fin e:SimpleWeb/ButtonEnd4]) $SimpleWeb/Start=1  
+
+u:(e:SimpleWeb/EthicTip) $SimpleWeb/Page/EthicTip=1 ^call(ProjectModule.blague_aleatoire_ethic())
+c1:(_*) $1
+
+	u1:([Accueil e:SimpleWeb/ButtonHome5]) $SimpleWeb/Home2=1  
+
+	u1:([Fin e:SimpleWeb/ButtonEnd5]) $SimpleWeb/Start=1  
 
 
 
